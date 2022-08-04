@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "908e1b18-3e75-4421-9e82-1a499da4e462",
+		"name": "influencer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16179347"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "create category",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "update category",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "get single category",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "get all category",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10,\n    \"asdf\": \"asdasd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete category",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/admin/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/admin/refresh-token/:refresh_token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"refresh-token",
+								":refresh_token"
+							],
+							"variable": [
+								{
+									"key": "refresh_token",
+									"value": "def502002c1d1be6e23dc7335c9782e785ccc4443d6169b6d313391a636851d4359203c7e1d2b7eac66d9f6c8867e23707d479d210feb4a9ef96117b445da37d5727311ee90203fa1afd1f45a84fd7597fbc8572e54f46c72d41f315b2cc5f25d83b928a44081ad002cd45585e0286805b77edcfb5fe39d05e2a008a6c3be2e3deeeaf173fa8b977dfbc3ae1a7211aa6e8a0d72f6a9a7f8175517242286c10fb74973808cce73d072b228159d2043ebd2f25164cac2ec21db65ab7bdc3b99e81816818ff2dff614e2add2272e75d54a3f732c5d5cdf7ee44f82ceacb7d7b442700e9b2f3c8b608ca1d103ce367ea77b364891600538989a5c085dae72bef192c3da21c032b7df66db8aba45b9671c09f0581a45823948b88991bf8987871fd82a4973b6eb538bde38bc3c385a1f18184b8a329eba5a64b72d09bca361dcf95ccd407ebfbc36b0983b9e481813a6bc3b6d6b0567b31f3c3197a69c5fe523d84bfefe96f33"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "influencer",
+			"item": [
+				{
+					"name": "user profile",
+					"item": [
+						{
+							"name": "update or create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"tom\",\n    \"middlename\": \"n\",\n    \"lastname\": \"jerry\",\n    \"country_id\": 142,\n    \"phone_number\": \"987654310\",\n    \"gender\": \"other\",\n    \"country_of_influence\": [1, 2, 3, 4],\n    \"language\": [1, 2, 3, 4],\n    \"tag\": [\"tag 1\", \"tag 2\", \"tag 3\", \"tag 4\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/influencer/user-profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"user-profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/influencer/user-profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"user-profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "influencer@influencer.com",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tomnjerry8963@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/influencer/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/influencer/refresh-token/:refresh_token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"refresh-token",
+								":refresh_token"
+							],
+							"variable": [
+								{
+									"key": "refresh_token",
+									"value": "def5020017d0f17ef013e5c9e3e3ca4631505bb490d10e949268b9dd7a06ca117cbd1419def6d121a6bcebbeb45d854845c4b7c0219030030eb8ed9dd42d450ac69dc0f0cf19d3bf1bb677879f86940c07d224b2fd1fa3b07996fe224e819d33ad080e7632cee966ec5818b851b6559526c45b41d7c2fdbf7b32ae96a7f3c091e4a65399ce1912335c2a5177d18c20386577a1b2629e774f4799f98ee66b35d53c8e153c50ca159d0bb1efc75caa5daa5378c3308164d89f07d9e751c29dca62f092d4545773d5af162566152ff10aee3adea23abcdd146a6e8de6598be304e9e9a340d195690f009de21bec60941fc4b4b777c0e16e3832fe90dbeb25ded2414db186904252631026ead363829c34b7ee9c64433fffc9109d0f23c0353cdb3223c55e1e3e509fca8f57a8ed650855cf01c2e2d7cf755afb72112158160dcf354344b155a8bf932d6dd34c00438bc65b69a997dac0376f43259ad67d43548ba31265a61c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tomnjerry",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tomnjerry8963@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/influencer/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend email verification mail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{influencer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/influencer/resend-email-verification-mail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"resend-email-verification-mail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "business",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "business@business.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/business/refresh-token/:refresh_token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"refresh-token",
+								":refresh_token"
+							],
+							"variable": [
+								{
+									"key": "refresh_token",
+									"value": "def50200ab469771dde5b3c15c3499c3db88494a2ffe0152ec7f582f5843505abb1cc98dd546774eb439d6a35fc05b34b6729482cee1a7be6ea9b7ee22872438dbecaa7721f25d4f2ee25ccc8034e4716857a4bde995105abed97eaf8cab1ef79636cceb1f47988f71d4c4ac20d6131326274445bb028c332776c76e8f534464b42457d13644260d88a9c8e89ec203bb0b513b5696c68ee130e9705691074035ab77592976241498b4b68a7caa3f097ba6e920dd8e93ffbf58c9cab80ad191e60a1c37a9a095eada318b28aaef929535ccff91f7950df9a767138264d8ae35db086f0fd7f4872a3713013c1ac84cd2b1dad155f659e6a723b0764a7ed42def179dea3109ef33a374369a9385431d187a0ab490b83d890fb9879c0520371de60acb9db605a79e70a38ea9d8465b2e4889e617f93912b3810b98948b34cc51a451f078ec30b8be4bc788d6df7224326e6ca458a5fc1bb86fa8b58815578d463b65ac0526ff"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "country, currency, language",
+					"item": [
+						{
+							"name": "get all currency",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/currency",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"currency"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all language",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/language",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"language"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/country",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"country"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/test",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
