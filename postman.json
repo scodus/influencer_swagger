@@ -25,24 +25,219 @@
 										}
 									]
 								},
-								"method": "GET",
-								"header": []
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "category 1",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/Screenshot from 2022-07-29 15-07-21.png"
+										},
+										{
+											"key": "description",
+											"value": "category 1 description",
+											"type": "text"
+										},
+										{
+											"key": "parent_id",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "order_level",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "meta_title",
+											"value": "category 1 meta title",
+											"type": "text"
+										},
+										{
+											"key": "meta_description",
+											"value": "category 1 meta description",
+											"type": "text"
+										},
+										{
+											"key": "meta_keyword[]",
+											"value": "keyword 1",
+											"type": "text"
+										},
+										{
+											"key": "meta_keyword[]",
+											"value": "keyword 2",
+											"type": "text"
+										},
+										{
+											"key": "meta_keyword[]",
+											"value": "keyword 3",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"category"
+									]
+								}
 							},
 							"response": []
 						},
 						{
 							"name": "update category",
 							"request": {
-								"method": "GET",
-								"header": []
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "category 1 edit",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/brick2.jpeg"
+										},
+										{
+											"key": "description",
+											"value": "category 1 description edit",
+											"type": "text"
+										},
+										{
+											"key": "parent_id",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "order_level",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "meta_title",
+											"value": "category 1 meta title edit",
+											"type": "text"
+										},
+										{
+											"key": "meta_description",
+											"value": "category 1 meta description edit",
+											"type": "text"
+										},
+										{
+											"key": "meta_keyword[]",
+											"value": "keyword 1 edit",
+											"type": "text"
+										},
+										{
+											"key": "meta_keyword[]",
+											"value": "keyword 2 edit",
+											"type": "text"
+										},
+										{
+											"key": "meta_keyword[]",
+											"value": "keyword 3 edit",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/category/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "category-1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
 						{
 							"name": "get single category",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/category/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "category-1-edit"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -66,7 +261,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10,\n    \"asdf\": \"asdasd\"\n}",
+									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -89,8 +284,327 @@
 						{
 							"name": "delete category",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/category/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"category",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "category-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Package",
+					"item": [
+						{
+							"name": "create package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "package 1",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/x360.jpeg"
+										},
+										{
+											"key": "description",
+											"value": "package 1 description",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "package type 1",
+											"description": "type example: dailt, weekly, monthly, 3month, 6 months, yearly, etc",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "1200.00",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/package",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"package"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "package 1 edit",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/brick2.jpeg"
+										},
+										{
+											"key": "description",
+											"value": "package 1 description edit",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "package type 1",
+											"description": "type example: dailt, weekly, monthly, 3month, 6 months, yearly, etc",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "1100.00",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/package/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"package",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "package-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/package/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"package",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "package-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all package",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/package",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"package"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/package/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"package",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "package-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Business",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"tomnjerry8963@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/set-password-mail",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"set-password-mail"
+									]
+								}
 							},
 							"response": []
 						}
@@ -117,13 +631,23 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/admin/login",
+							"raw": "{{url}}/admin/login?email=admin@admin.com&password=P@ssw0rd",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"admin",
 								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "admin@admin.com"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd"
+								}
 							]
 						}
 					},
@@ -154,7 +678,7 @@
 							"variable": [
 								{
 									"key": "refresh_token",
-									"value": "def502002c1d1be6e23dc7335c9782e785ccc4443d6169b6d313391a636851d4359203c7e1d2b7eac66d9f6c8867e23707d479d210feb4a9ef96117b445da37d5727311ee90203fa1afd1f45a84fd7597fbc8572e54f46c72d41f315b2cc5f25d83b928a44081ad002cd45585e0286805b77edcfb5fe39d05e2a008a6c3be2e3deeeaf173fa8b977dfbc3ae1a7211aa6e8a0d72f6a9a7f8175517242286c10fb74973808cce73d072b228159d2043ebd2f25164cac2ec21db65ab7bdc3b99e81816818ff2dff614e2add2272e75d54a3f732c5d5cdf7ee44f82ceacb7d7b442700e9b2f3c8b608ca1d103ce367ea77b364891600538989a5c085dae72bef192c3da21c032b7df66db8aba45b9671c09f0581a45823948b88991bf8987871fd82a4973b6eb538bde38bc3c385a1f18184b8a329eba5a64b72d09bca361dcf95ccd407ebfbc36b0983b9e481813a6bc3b6d6b0567b31f3c3197a69c5fe523d84bfefe96f33"
+									"value": "def502006baf4abc1e466b0c9a0823e72249ff9506c2ccf6276c3dd4df3fe6c81428a34e6335b6d7604a5b0302085ca32fa737d2de2c0ae1b23f1fb6dd6d8dda64e4d7abb72c22db26c1e861ad92835990b8920674fbf3dee9d156d700b3af587d1e7e69d9f4faf91c2c00c17b0acc089d1c67b985c52d9eb20f55efb8fbade717cd5cbe27659958d8925abd7dc9439a365313b527c4c82f7f4df8e667fc6fec1c29a04915057dcca287fe60db727d0df77e1a3a64176884cfe91272b797741d1aec6fb8d6cea45f03ff8b8ea9db2a42d19fdc252a839e5348d1e5f270a4aa17e780246a10c4e312253578b102ee09895e06e25059970eedcdf5ad0346a16ce53b668004631703313e9b359e400defcacb0381a929b53c6e9edce42b90079a49200ee3f3d7a9e1dbcea3e911e203cb0f7dfb2e577a7a360575e72fbafdc9f14b8ba7aee7aa45cc7acd9dbcedc3d0e60dd0b1e871b4be448fc52bbb7684f70b76afbb7d84"
 								}
 							]
 						}
@@ -186,7 +710,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"firstname\": \"tom\",\n    \"middlename\": \"n\",\n    \"lastname\": \"jerry\",\n    \"country_id\": 142,\n    \"phone_number\": \"987654310\",\n    \"gender\": \"other\",\n    \"country_of_influence\": [1, 2, 3, 4],\n    \"language\": [1, 2, 3, 4],\n    \"tag\": [\"tag 1\", \"tag 2\", \"tag 3\", \"tag 4\"]\n}",
+									"raw": "{\n    \"firstname\": \"tom\",\n    \"middlename\": \"n\",\n    \"lastname\": \"jerry\",\n    \"country_id\": 142,\n    \"phone_number\": \"98765431w0\",\n    \"gender\": \"other\",\n    \"country_of_influence\": [1, 2, 3, 4],\n    \"language\": [1, 2, 3, 4],\n    \"tag\": [\"tag 1\", \"tag 2\", \"tag 3\", \"tag 4\"],\n    \"category\": [2, 3, 7, 11, 17, 24]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -247,13 +771,13 @@
 								{
 									"key": "email",
 									"value": "influencer@influencer.com",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "email",
 									"value": "tomnjerry8963@gmail.com",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
@@ -388,6 +912,72 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "send reset password mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "tomnjerry8963@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/influencer/reset-password-mail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"reset-password-mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "ECbF0LBN3AtzaTYSkXnZAovwQgqS8l7bisXuUxshh7jjUqGYLdS1e7LMItyqiFi7",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/influencer/reset-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -465,6 +1055,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "dummysharedmail@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "package_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -480,11 +1103,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/currency",
+									"raw": "{{url}}/api/currency",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"currency"
 									]
 								}
@@ -497,11 +1121,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/language",
+									"raw": "{{url}}/api/language",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"language"
 									]
 								}
@@ -514,11 +1139,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/country",
+									"raw": "{{url}}/api/country",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"country"
 									]
 								}
@@ -526,6 +1152,24 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "category with subcategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/category-with-sub",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category-with-sub"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

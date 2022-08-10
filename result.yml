@@ -1,0 +1,728 @@
+openapi: 3.0.0
+info:
+  title: Influencer
+  description: Influencer
+  version: '1.0'
+  x-logo:
+    url: https://github.com/joolfe/logoBanner.png
+    backgroundColor: '#FFFFFF'
+    altText: logo
+  termsOfService: '#'
+  contact:
+    name: Scodus
+    url: https://scodus.com
+    email: scodusnp@gmail.com
+  license:
+    name: MIT
+    url: https://es.wikipedia.org/wiki/Licencia_MIT
+servers:
+  - url: http://{{url}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: admin
+  - name: admin > category
+  - name: admin > Package
+  - name: admin > Business
+  - name: influencer
+  - name: influencer > user profile
+  - name: business
+  - name: public
+  - name: public > country, currency, language
+paths:
+  /admin/category:
+    post:
+      tags:
+        - admin > category
+      summary: create category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: category 1
+                image:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  example: category 1 description
+                parent_id:
+                  type: string
+                  description: nullable
+                order_level:
+                  type: string
+                  description: nullable
+                meta_title:
+                  type: string
+                  example: category 1 meta title
+                meta_description:
+                  type: string
+                  example: category 1 meta description
+                meta_keyword[]:
+                  type: string
+                  example: keyword 3
+                status_id:
+                  type: integer
+                  description: >-
+                    nullable, 1 for active, 2 for inactive. if null status_id =
+                    1
+                  example: '1'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > category
+      summary: get all category
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/category/{slug}:
+    post:
+      tags:
+        - admin > category
+      summary: update category
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                title:
+                  type: string
+                  example: category 1 edit
+                image:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  example: category 1 description edit
+                parent_id:
+                  type: string
+                  description: nullable
+                order_level:
+                  type: string
+                  description: nullable
+                meta_title:
+                  type: string
+                  example: category 1 meta title edit
+                meta_description:
+                  type: string
+                  example: category 1 meta description edit
+                meta_keyword[]:
+                  type: string
+                  example: keyword 3 edit
+                status_id:
+                  type: integer
+                  description: >-
+                    nullable, 1 for active, 2 for inactive. if null status_id =
+                    1
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: category-1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > category
+      summary: get single category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: category-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - admin > category
+      summary: delete category
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: category-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/package:
+    post:
+      tags:
+        - admin > Package
+      summary: create package
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: package 1
+                image:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  example: package 1 description
+                type:
+                  type: string
+                  description: >-
+                    type example: dailt, weekly, monthly, 3month, 6 months,
+                    yearly, etc
+                  example: package type 1
+                price:
+                  type: number
+                  example: '1200.00'
+                status_id:
+                  type: integer
+                  description: >-
+                    nullable, 1 for active, 2 for inactive. if null status_id =
+                    1
+                  example: '1'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > Package
+      summary: get all package
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/package/{slug}:
+    post:
+      tags:
+        - admin > Package
+      summary: update package
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                title:
+                  type: string
+                  example: package 1 edit
+                image:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  example: package 1 description edit
+                type:
+                  type: string
+                  description: >-
+                    type example: dailt, weekly, monthly, 3month, 6 months,
+                    yearly, etc
+                  example: package type 1
+                price:
+                  type: number
+                  example: '1100.00'
+                status_id:
+                  type: integer
+                  description: >-
+                    nullable, 1 for active, 2 for inactive. if null status_id =
+                    1
+                  example: '1'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: package-1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > Package
+      summary: get single package
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: package-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - admin > Package
+      summary: delete package
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: package-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/set-password-mail:
+    post:
+      tags:
+        - admin > Business
+      summary: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: tomnjerry8963@gmail.com
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/login:
+    post:
+      tags:
+        - admin
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@admin.com
+                password:
+                  type: string
+                  example: P@ssw0rd
+      parameters:
+        - name: email
+          in: query
+          schema:
+            type: string
+          example: admin@admin.com
+        - name: password
+          in: query
+          schema:
+            type: string
+          example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/refresh-token/{refresh_token}:
+    post:
+      tags:
+        - admin
+      summary: refresh token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: refresh_token
+          in: path
+          schema:
+            type: string
+          required: true
+          example: >-
+            def502006baf4abc1e466b0c9a0823e72249ff9506c2ccf6276c3dd4df3fe6c81428a34e6335b6d7604a5b0302085ca32fa737d2de2c0ae1b23f1fb6dd6d8dda64e4d7abb72c22db26c1e861ad92835990b8920674fbf3dee9d156d700b3af587d1e7e69d9f4faf91c2c00c17b0acc089d1c67b985c52d9eb20f55efb8fbade717cd5cbe27659958d8925abd7dc9439a365313b527c4c82f7f4df8e667fc6fec1c29a04915057dcca287fe60db727d0df77e1a3a64176884cfe91272b797741d1aec6fb8d6cea45f03ff8b8ea9db2a42d19fdc252a839e5348d1e5f270a4aa17e780246a10c4e312253578b102ee09895e06e25059970eedcdf5ad0346a16ce53b668004631703313e9b359e400defcacb0381a929b53c6e9edce42b90079a49200ee3f3d7a9e1dbcea3e911e203cb0f7dfb2e577a7a360575e72fbafdc9f14b8ba7aee7aa45cc7acd9dbcedc3d0e60dd0b1e871b4be448fc52bbb7684f70b76afbb7d84
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/user-profile:
+    post:
+      tags:
+        - influencer > user profile
+      summary: update or create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstname: tom
+                middlename: 'n'
+                lastname: jerry
+                country_id: 142
+                phone_number: 98765431w0
+                gender: other
+                country_of_influence:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                language:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                tag:
+                  - tag 1
+                  - tag 2
+                  - tag 3
+                  - tag 4
+                category:
+                  - 2
+                  - 3
+                  - 7
+                  - 11
+                  - 17
+                  - 24
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - influencer > user profile
+      summary: get
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/login:
+    post:
+      tags:
+        - influencer
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: tomnjerry8963@gmail.com
+                password:
+                  type: string
+                  example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/refresh-token/{refresh_token}:
+    post:
+      tags:
+        - influencer
+      summary: refresh token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: refresh_token
+          in: path
+          schema:
+            type: string
+          required: true
+          example: >-
+            def5020017d0f17ef013e5c9e3e3ca4631505bb490d10e949268b9dd7a06ca117cbd1419def6d121a6bcebbeb45d854845c4b7c0219030030eb8ed9dd42d450ac69dc0f0cf19d3bf1bb677879f86940c07d224b2fd1fa3b07996fe224e819d33ad080e7632cee966ec5818b851b6559526c45b41d7c2fdbf7b32ae96a7f3c091e4a65399ce1912335c2a5177d18c20386577a1b2629e774f4799f98ee66b35d53c8e153c50ca159d0bb1efc75caa5daa5378c3308164d89f07d9e751c29dca62f092d4545773d5af162566152ff10aee3adea23abcdd146a6e8de6598be304e9e9a340d195690f009de21bec60941fc4b4b777c0e16e3832fe90dbeb25ded2414db186904252631026ead363829c34b7ee9c64433fffc9109d0f23c0353cdb3223c55e1e3e509fca8f57a8ed650855cf01c2e2d7cf755afb72112158160dcf354344b155a8bf932d6dd34c00438bc65b69a997dac0376f43259ad67d43548ba31265a61c
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/register:
+    post:
+      tags:
+        - influencer
+      summary: register
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: tomnjerry
+                email:
+                  type: string
+                  example: tomnjerry8963@gmail.com
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/resend-email-verification-mail:
+    post:
+      tags:
+        - influencer
+      summary: resend email verification mail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/reset-password-mail:
+    post:
+      tags:
+        - influencer
+      summary: send reset password mail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: tomnjerry8963@gmail.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/reset-password:
+    post:
+      tags:
+        - influencer
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+                token:
+                  type: string
+                  example: >-
+                    ECbF0LBN3AtzaTYSkXnZAovwQgqS8l7bisXuUxshh7jjUqGYLdS1e7LMItyqiFi7
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/login:
+    post:
+      tags:
+        - business
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: business@business.com
+                password:
+                  type: string
+                  example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/refresh-token/{refresh_token}:
+    post:
+      tags:
+        - business
+      summary: refresh token
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: refresh_token
+          in: path
+          schema:
+            type: string
+          required: true
+          example: >-
+            def50200ab469771dde5b3c15c3499c3db88494a2ffe0152ec7f582f5843505abb1cc98dd546774eb439d6a35fc05b34b6729482cee1a7be6ea9b7ee22872438dbecaa7721f25d4f2ee25ccc8034e4716857a4bde995105abed97eaf8cab1ef79636cceb1f47988f71d4c4ac20d6131326274445bb028c332776c76e8f534464b42457d13644260d88a9c8e89ec203bb0b513b5696c68ee130e9705691074035ab77592976241498b4b68a7caa3f097ba6e920dd8e93ffbf58c9cab80ad191e60a1c37a9a095eada318b28aaef929535ccff91f7950df9a767138264d8ae35db086f0fd7f4872a3713013c1ac84cd2b1dad155f659e6a723b0764a7ed42def179dea3109ef33a374369a9385431d187a0ab490b83d890fb9879c0520371de60acb9db605a79e70a38ea9d8465b2e4889e617f93912b3810b98948b34cc51a451f078ec30b8be4bc788d6df7224326e6ca458a5fc1bb86fa8b58815578d463b65ac0526ff
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/register:
+    post:
+      tags:
+        - business
+      summary: register
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: dummysharedmail@gmail.com
+                package_id:
+                  type: integer
+                  example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/currency:
+    get:
+      tags:
+        - public > country, currency, language
+      summary: get all currency
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/language:
+    get:
+      tags:
+        - public > country, currency, language
+      summary: get all language
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/country:
+    get:
+      tags:
+        - public > country, currency, language
+      summary: get all country
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/category-with-sub:
+    get:
+      tags:
+        - public
+      summary: category with subcategory
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/test:
+    get:
+      tags:
+        - default
+      summary: test
+      security:
+        - noauthAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
