@@ -582,18 +582,26 @@
 							"name": "register",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"tomnjerry8963@gmail.com\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "dummysharedmail@gmail.com",
+											"type": "text"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{url}}/admin/set-password-mail",
@@ -1001,6 +1009,12 @@
 									"key": "password",
 									"value": "P@ssw0rd",
 									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dummysharedmail@gmail.com",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -1084,6 +1098,110 @@
 							"path": [
 								"business",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "YCdb4OYRmQYUPdHUhvGyYybMJv03L2NSbFIJtJAQjVJBGXIhBGdvZNij8XV6XJPw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/set-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"set-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send reset password mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "dummysharedmail@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/reset-password-mail",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"reset-password-mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "3vMvM4QR4X2XNmdSlHL8BOLaqSdP89dTsmmKuRZEr9xA8WfLNpmOkihbpaHXRNEz",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/reset-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"reset-password"
 							]
 						}
 					},

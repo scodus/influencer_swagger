@@ -337,13 +337,15 @@ paths:
       summary: register
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
-              example:
-                email: tomnjerry8963@gmail.com
+              properties:
+                email:
+                  type: string
+                  example: dummysharedmail@gmail.com
       security:
-        - noauthAuth: []
+        - bearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -617,7 +619,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: business@business.com
+                  example: dummysharedmail@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -669,6 +671,77 @@ paths:
                 package_id:
                   type: integer
                   example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/set-password:
+    post:
+      tags:
+        - business
+      summary: set password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+                token:
+                  type: string
+                  example: >-
+                    YCdb4OYRmQYUPdHUhvGyYybMJv03L2NSbFIJtJAQjVJBGXIhBGdvZNij8XV6XJPw
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/reset-password-mail:
+    post:
+      tags:
+        - business
+      summary: send reset password mail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: dummysharedmail@gmail.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/reset-password:
+    post:
+      tags:
+        - business
+      summary: reset password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
+                token:
+                  type: string
+                  example: >-
+                    3vMvM4QR4X2XNmdSlHL8BOLaqSdP89dTsmmKuRZEr9xA8WfLNpmOkihbpaHXRNEz
       responses:
         '200':
           description: Successful response
