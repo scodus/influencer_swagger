@@ -209,13 +209,7 @@ paths:
                 description:
                   type: string
                   example: package 1 description
-                type:
-                  type: string
-                  description: >-
-                    type example: dailt, weekly, monthly, 3month, 6 months,
-                    yearly, etc
-                  example: package type 1
-                price:
+                price_per_month:
                   type: number
                   example: '1200.00'
                 status_id:
@@ -648,7 +642,7 @@ paths:
             type: string
           required: true
           example: >-
-            def50200ab469771dde5b3c15c3499c3db88494a2ffe0152ec7f582f5843505abb1cc98dd546774eb439d6a35fc05b34b6729482cee1a7be6ea9b7ee22872438dbecaa7721f25d4f2ee25ccc8034e4716857a4bde995105abed97eaf8cab1ef79636cceb1f47988f71d4c4ac20d6131326274445bb028c332776c76e8f534464b42457d13644260d88a9c8e89ec203bb0b513b5696c68ee130e9705691074035ab77592976241498b4b68a7caa3f097ba6e920dd8e93ffbf58c9cab80ad191e60a1c37a9a095eada318b28aaef929535ccff91f7950df9a767138264d8ae35db086f0fd7f4872a3713013c1ac84cd2b1dad155f659e6a723b0764a7ed42def179dea3109ef33a374369a9385431d187a0ab490b83d890fb9879c0520371de60acb9db605a79e70a38ea9d8465b2e4889e617f93912b3810b98948b34cc51a451f078ec30b8be4bc788d6df7224326e6ca458a5fc1bb86fa8b58815578d463b65ac0526ff
+            def50200cef5fee59be4118424de9ea0d4eb258eca3597d485bc24ca92ae7dbd4a61ba089b8ee83a8910551728225da27d1167c28f2235f5dfe8250e16dcf335f7a92f4567e7a4a1082cfe83ee6323c583c344d87c78b845857984e21a15893e7f064ac58dddc21cff4837623773b6dd10a83d4b066042c106bfc9324ac94ff028fd2420378bb65afa531a4a356dd47fdd76d60bc4ccc7162d86b4dfe6e975ab110ea0ca29c209e0814766e19035128c8ac366adfa668dbefd1e61ee360b0adf8b79041c864a3cc6c7e0dc8c113880f647e8d9603cde8b95560cbbe511c3506239c2db98b5683b374782658b7b4e499bd0365a5df720fde4d676e6219f4fca96faadabe542bbc2322ffaa1a558a761ac5703cb2cf30f77f96b8b5ac00d2022c9cb7182873468db7d9d527c869c80c6f002dd82664ab2ee99f2f13d433e44dcadac3e8240c4fc09118f95b85a26f0055f07fdd412eea3f3b8d8cb9869b5c89bff6ce5b684
       responses:
         '200':
           description: Successful response
@@ -665,12 +659,18 @@ paths:
             schema:
               type: object
               properties:
+                name:
+                  type: string
+                  example: tomnjerry
                 email:
                   type: string
-                  example: dummysharedmail@gmail.com
-                package_id:
-                  type: integer
-                  example: '1'
+                  example: tomnjerry8963@gmail.com
+                password:
+                  type: string
+                  example: P@ssw0rd
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rd
       responses:
         '200':
           description: Successful response
