@@ -3,7 +3,7 @@
 		"_postman_id": "908e1b18-3e75-4421-9e82-1a499da4e462",
 		"name": "influencer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16179347"
+		"_exporter_id": "19791325"
 	},
 	"item": [
 		{
@@ -36,9 +36,14 @@
 											"type": "text"
 										},
 										{
-											"key": "image",
+											"key": "small_image",
 											"type": "file",
-											"src": "/home/user--49/Pictures/Screenshot from 2022-07-29 15-07-21.png"
+											"src": "/home/user--49/Pictures/Screenshot from 2022-11-17 10-00-11.png"
+										},
+										{
+											"key": "big_image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/Screenshot from 2022-11-10 13-54-56.png"
 										},
 										{
 											"key": "description",
@@ -47,12 +52,6 @@
 										},
 										{
 											"key": "parent_id",
-											"value": "",
-											"description": "nullable",
-											"type": "text"
-										},
-										{
-											"key": "order_level",
 											"value": "",
 											"description": "nullable",
 											"type": "text"
@@ -132,9 +131,15 @@
 											"type": "text"
 										},
 										{
-											"key": "image",
+											"key": "small_image",
 											"type": "file",
-											"src": "/home/user--49/Pictures/brick2.jpeg"
+											"src": "/home/user--49/Pictures/Screenshot from 2022-10-28 08-55-54.png"
+										},
+										{
+											"key": "big_image",
+											"description": "nullable",
+											"type": "file",
+											"src": "/home/user--49/Pictures/Screenshot from 2022-09-27 13-31-36.png"
 										},
 										{
 											"key": "description",
@@ -143,12 +148,6 @@
 										},
 										{
 											"key": "parent_id",
-											"value": "",
-											"description": "nullable",
-											"type": "text"
-										},
-										{
-											"key": "order_level",
 											"value": "",
 											"description": "nullable",
 											"type": "text"
@@ -319,7 +318,7 @@
 					]
 				},
 				{
-					"name": "Package",
+					"name": "package",
 					"item": [
 						{
 							"name": "create package",
@@ -341,7 +340,7 @@
 									"formdata": [
 										{
 											"key": "title",
-											"value": "package 1",
+											"value": "package 3",
 											"type": "text"
 										},
 										{
@@ -351,7 +350,7 @@
 										},
 										{
 											"key": "description",
-											"value": "package 1 description",
+											"value": "package 3 description",
 											"type": "text"
 										},
 										{
@@ -405,7 +404,7 @@
 										},
 										{
 											"key": "title",
-											"value": "package 1 edit",
+											"value": "package 3 edit",
 											"type": "text"
 										},
 										{
@@ -415,17 +414,11 @@
 										},
 										{
 											"key": "description",
-											"value": "package 1 description edit",
+											"value": "package 3 description edit",
 											"type": "text"
 										},
 										{
-											"key": "type",
-											"value": "package type 1",
-											"description": "type example: dailt, weekly, monthly, 3month, 6 months, yearly, etc",
-											"type": "text"
-										},
-										{
-											"key": "price",
+											"key": "price_per_month",
 											"value": "1100.00",
 											"type": "text"
 										},
@@ -450,7 +443,7 @@
 									"variable": [
 										{
 											"key": "slug",
-											"value": "package-1"
+											"value": "package-3"
 										}
 									]
 								}
@@ -570,7 +563,7 @@
 					]
 				},
 				{
-					"name": "Business",
+					"name": "business",
 					"item": [
 						{
 							"name": "register",
@@ -613,47 +606,769 @@
 					]
 				},
 				{
-					"name": "login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "admin@admin.com",
-									"type": "text"
+					"name": "tag",
+					"item": [
+						{
+							"name": "create tag",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "P@ssw0rd",
-									"type": "text"
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"tag 1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/tag",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tag"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/admin/login?email=admin@admin.com&password=P@ssw0rd",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"admin",
-								"login"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": "admin@admin.com"
+						{
+							"name": "update tag",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "P@ssw0rd"
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"_method\": \"patch\",\n    \"title\": \"tag 1 edit\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/tag/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tag",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "tag-1"
+										}
+									]
 								}
-							]
+							},
+							"response": []
+						},
+						{
+							"name": "get single tag",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/tag/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tag",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "tag-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all tag",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/tag",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tag"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete tag",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/tag/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"tag",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "tag-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "language",
+					"item": [
+						{
+							"name": "create language",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"language 1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/language",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"language"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update language",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"_method\": \"patch\",\n    \"title\": \"language 1 edit\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/language/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"language",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "language-1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single language",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/language/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"language",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "language-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all language",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/language",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"language"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete language",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/language/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"language",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "language-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "channel",
+					"item": [
+						{
+							"name": "get all channels",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel?status=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel/:channel_id/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel",
+										":channel_id",
+										"status"
+									],
+									"variable": [
+										{
+											"key": "channel_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "find single channel",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/influencer/channel/:channel_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"channel",
+										":channel_id"
+									],
+									"variable": [
+										{
+											"key": "channel_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "channel post type",
+					"item": [
+						{
+							"name": "create channel post type",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Reels\",\r\n    \"channel_id\" : 1,\r\n    \"status\" : 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel-post-type",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel-post-type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\" : \"Reel\",\r\n    \"channel_id\" : 1,\r\n    \"status\" : 1,\r\n    \"_method\" : \"PUT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel-post-type/:channel_post_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel-post-type",
+										":channel_post_type_id"
+									],
+									"variable": [
+										{
+											"key": "channel_post_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel-post-type/:channel_post_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel-post-type",
+										":channel_post_type_id"
+									],
+									"variable": [
+										{
+											"key": "channel_post_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel-post-type/:channel_post_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel-post-type",
+										":channel_post_type_id"
+									],
+									"variable": [
+										{
+											"key": "channel_post_type_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/channel-post-type?status=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"channel-post-type"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "refresh token",
@@ -682,6 +1397,51 @@
 									"key": "refresh_token",
 									"value": "def502006baf4abc1e466b0c9a0823e72249ff9506c2ccf6276c3dd4df3fe6c81428a34e6335b6d7604a5b0302085ca32fa737d2de2c0ae1b23f1fb6dd6d8dda64e4d7abb72c22db26c1e861ad92835990b8920674fbf3dee9d156d700b3af587d1e7e69d9f4faf91c2c00c17b0acc089d1c67b985c52d9eb20f55efb8fbade717cd5cbe27659958d8925abd7dc9439a365313b527c4c82f7f4df8e667fc6fec1c29a04915057dcca287fe60db727d0df77e1a3a64176884cfe91272b797741d1aec6fb8d6cea45f03ff8b8ea9db2a42d19fdc252a839e5348d1e5f270a4aa17e780246a10c4e312253578b102ee09895e06e25059970eedcdf5ad0346a16ce53b668004631703313e9b359e400defcacb0381a929b53c6e9edce42b90079a49200ee3f3d7a9e1dbcea3e911e203cb0f7dfb2e577a7a360575e72fbafdc9f14b8ba7aee7aa45cc7acd9dbcedc3d0e60dd0b1e871b4be448fc52bbb7684f70b76afbb7d84"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"pm.environment.set('admin_token', response.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/admin/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"login"
 							]
 						}
 					},
@@ -763,7 +1523,152 @@
 					]
 				},
 				{
+					"name": "channel",
+					"item": [
+						{
+							"name": "get active channels",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/influencer/channel",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"channel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "find single channel",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/influencer/channel/:channel_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"channel",
+										":channel_id"
+									],
+									"variable": [
+										{
+											"key": "channel_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "channel post type",
+					"item": [
+						{
+							"name": "get all active",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/influencer/channel-post-type?status=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"channel-post-type"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"pm.environment.set('influencer_token', response.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -772,13 +1677,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "influencer@influencer.com",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "email",
-									"value": "tomnjerry8963@gmail.com",
+									"value": "leon.schiffer360@gmail.com",
 									"type": "text"
 								},
 								{
@@ -802,6 +1701,47 @@
 									"key": "email",
 									"value": null,
 									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "social login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "{{google_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/influencer/social-login/:provider_name",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"social-login",
+								":provider_name"
+							],
+							"variable": [
+								{
+									"key": "provider_name",
+									"value": "google"
 								}
 							]
 						}
@@ -850,12 +1790,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "tomnjerry",
+									"value": "Leon Schiffer",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "tomnjerry8963@gmail.com",
+									"value": "leon.schiffer360@gmail.com",
 									"type": "text"
 								},
 								{
@@ -903,13 +1843,13 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{url}}/influencer/resend-email-verification-mail",
+							"raw": "{{url}}/influencer/resend-account-verification-mail",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"influencer",
-								"resend-email-verification-mail"
+								"resend-account-verification-mail"
 							]
 						}
 					},
@@ -925,7 +1865,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "tomnjerry8963@gmail.com",
+									"value": "influencer@influencer.com",
 									"type": "text"
 								}
 							]
@@ -1090,6 +2030,11 @@
 								{
 									"key": "password_confirmation",
 									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "package_id",
+									"value": "1",
 									"type": "text"
 								}
 							]
@@ -1299,18 +2244,25 @@
 			"name": "test",
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{business_token}}",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/test",
+					"raw": "{{url}}/business/business-has-package-middleware-check",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"api",
-						"test"
+						"business",
+						"business-has-package-middleware-check"
 					]
 				}
 			},
