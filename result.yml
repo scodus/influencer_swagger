@@ -28,10 +28,16 @@ components:
 tags:
   - name: admin
   - name: admin > category
-  - name: admin > Package
-  - name: admin > Business
+  - name: admin > package
+  - name: admin > business
+  - name: admin > tag
+  - name: admin > language
+  - name: admin > channel
+  - name: admin > channel post type
   - name: influencer
   - name: influencer > user profile
+  - name: influencer > channel
+  - name: influencer > channel post type
   - name: business
   - name: public
   - name: public > country, currency, language
@@ -50,16 +56,16 @@ paths:
                 title:
                   type: string
                   example: category 1
-                image:
+                small_image:
+                  type: string
+                  format: binary
+                big_image:
                   type: string
                   format: binary
                 description:
                   type: string
                   example: category 1 description
                 parent_id:
-                  type: string
-                  description: nullable
-                order_level:
                   type: string
                   description: nullable
                 meta_title:
@@ -112,16 +118,17 @@ paths:
                 title:
                   type: string
                   example: category 1 edit
-                image:
+                small_image:
                   type: string
+                  format: binary
+                big_image:
+                  type: string
+                  description: nullable
                   format: binary
                 description:
                   type: string
                   example: category 1 description edit
                 parent_id:
-                  type: string
-                  description: nullable
-                order_level:
                   type: string
                   description: nullable
                 meta_title:
@@ -192,7 +199,7 @@ paths:
   /admin/package:
     post:
       tags:
-        - admin > Package
+        - admin > package
       summary: create package
       requestBody:
         content:
@@ -202,13 +209,13 @@ paths:
               properties:
                 title:
                   type: string
-                  example: package 1
+                  example: package 3
                 image:
                   type: string
                   format: binary
                 description:
                   type: string
-                  example: package 1 description
+                  example: package 3 description
                 price_per_month:
                   type: number
                   example: '1200.00'
@@ -227,7 +234,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > Package
+        - admin > package
       summary: get all package
       security:
         - bearerAuth: []
@@ -239,7 +246,7 @@ paths:
   /admin/package/{slug}:
     post:
       tags:
-        - admin > Package
+        - admin > package
       summary: update package
       requestBody:
         content:
@@ -252,20 +259,14 @@ paths:
                   example: patch
                 title:
                   type: string
-                  example: package 1 edit
+                  example: package 3 edit
                 image:
                   type: string
                   format: binary
                 description:
                   type: string
-                  example: package 1 description edit
-                type:
-                  type: string
-                  description: >-
-                    type example: dailt, weekly, monthly, 3month, 6 months,
-                    yearly, etc
-                  example: package type 1
-                price:
+                  example: package 3 description edit
+                price_per_month:
                   type: number
                   example: '1100.00'
                 status_id:
@@ -282,7 +283,7 @@ paths:
           schema:
             type: string
           required: true
-          example: package-1
+          example: package-3
       responses:
         '200':
           description: Successful response
@@ -290,7 +291,7 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > Package
+        - admin > package
       summary: get single package
       security:
         - bearerAuth: []
@@ -308,7 +309,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - admin > Package
+        - admin > package
       summary: delete package
       security:
         - bearerAuth: []
@@ -327,7 +328,7 @@ paths:
   /admin/set-password-mail:
     post:
       tags:
-        - admin > Business
+        - admin > business
       summary: register
       requestBody:
         content:
@@ -345,34 +346,357 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/login:
+  /admin/tag:
     post:
       tags:
-        - admin
-      summary: login
+        - admin > tag
+      summary: create tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: tag 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > tag
+      summary: get all tag
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/tag/{slug}:
+    post:
+      tags:
+        - admin > tag
+      summary: update tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                title: tag 1 edit
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: tag-1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > tag
+      summary: get single tag
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: tag-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - admin > tag
+      summary: delete tag
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: tag-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/language:
+    post:
+      tags:
+        - admin > language
+      summary: create language
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: language 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > language
+      summary: get all language
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/language/{slug}:
+    post:
+      tags:
+        - admin > language
+      summary: update language
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                _method: patch
+                title: language 1 edit
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: language-1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > language
+      summary: get single language
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: language-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - admin > language
+      summary: delete language
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: language-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/channel:
+    get:
+      tags:
+        - admin > channel
+      summary: get all channels
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/channel/{channel_id}/status:
+    post:
+      tags:
+        - admin > channel
+      summary: update status
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
               properties:
-                email:
+                status:
+                  type: integer
+                  example: '1'
+                _method:
                   type: string
-                  example: admin@admin.com
-                password:
-                  type: string
-                  example: P@ssw0rd
+                  example: PUT
+      security:
+        - bearerAuth: []
       parameters:
-        - name: email
+        - name: channel_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/channel/{channel_id}:
+    get:
+      tags:
+        - influencer > channel
+      summary: find single channel
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: channel_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/channel-post-type:
+    post:
+      tags:
+        - admin > channel post type
+      summary: create channel post type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Reels
+                channel_id: 1
+                status: 0
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > channel post type
+      summary: get all
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: status
           in: query
           schema:
-            type: string
-          example: admin@admin.com
-        - name: password
-          in: query
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/channel-post-type/{channel_post_type_id}:
+    post:
+      tags:
+        - admin > channel post type
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Reel
+                channel_id: 1
+                status: 1
+                _method: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: channel_post_type_id
+          in: path
           schema:
-            type: string
-          example: P@ssw0rd
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - admin > channel post type
+      summary: delete
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: channel_post_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin > channel post type
+      summary: get single
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: channel_post_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '2'
       responses:
         '200':
           description: Successful response
@@ -399,6 +723,28 @@ paths:
           required: true
           example: >-
             def502006baf4abc1e466b0c9a0823e72249ff9506c2ccf6276c3dd4df3fe6c81428a34e6335b6d7604a5b0302085ca32fa737d2de2c0ae1b23f1fb6dd6d8dda64e4d7abb72c22db26c1e861ad92835990b8920674fbf3dee9d156d700b3af587d1e7e69d9f4faf91c2c00c17b0acc089d1c67b985c52d9eb20f55efb8fbade717cd5cbe27659958d8925abd7dc9439a365313b527c4c82f7f4df8e667fc6fec1c29a04915057dcca287fe60db727d0df77e1a3a64176884cfe91272b797741d1aec6fb8d6cea45f03ff8b8ea9db2a42d19fdc252a839e5348d1e5f270a4aa17e780246a10c4e312253578b102ee09895e06e25059970eedcdf5ad0346a16ce53b668004631703313e9b359e400defcacb0381a929b53c6e9edce42b90079a49200ee3f3d7a9e1dbcea3e911e203cb0f7dfb2e577a7a360575e72fbafdc9f14b8ba7aee7aa45cc7acd9dbcedc3d0e60dd0b1e871b4be448fc52bbb7684f70b76afbb7d84
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /admin/login:
+    post:
+      tags:
+        - admin
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: admin@admin.com
+                password:
+                  type: string
+                  example: P@ssw0rd
       responses:
         '200':
           description: Successful response
@@ -461,6 +807,35 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /influencer/channel:
+    get:
+      tags:
+        - influencer > channel
+      summary: get active channels
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/channel-post-type:
+    get:
+      tags:
+        - influencer > channel post type
+      summary: get all active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /influencer/login:
     post:
       tags:
@@ -474,10 +849,41 @@ paths:
               properties:
                 email:
                   type: string
-                  example: tomnjerry8963@gmail.com
+                  example: leon.schiffer360@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/social-login/{provider_name}:
+    post:
+      tags:
+        - influencer
+      summary: social login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: '{{google_token}}'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: provider_name
+          in: path
+          schema:
+            type: string
+          required: true
+          example: google
       responses:
         '200':
           description: Successful response
@@ -522,10 +928,10 @@ paths:
               properties:
                 name:
                   type: string
-                  example: tomnjerry
+                  example: Leon Schiffer
                 email:
                   type: string
-                  example: tomnjerry8963@gmail.com
+                  example: leon.schiffer360@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -537,7 +943,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/resend-email-verification-mail:
+  /influencer/resend-account-verification-mail:
     post:
       tags:
         - influencer
@@ -568,7 +974,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: tomnjerry8963@gmail.com
+                  example: influencer@influencer.com
       responses:
         '200':
           description: Successful response
@@ -671,6 +1077,9 @@ paths:
                 password_confirmation:
                   type: string
                   example: P@ssw0rd
+                package_id:
+                  type: integer
+                  example: '1'
       responses:
         '200':
           description: Successful response
@@ -787,13 +1196,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/test:
+  /business/business-has-package-middleware-check:
     get:
       tags:
         - default
       summary: test
       security:
-        - noauthAuth: []
+        - bearerAuth: []
       responses:
         '200':
           description: Successful response
