@@ -40,7 +40,6 @@ tags:
   - name: influencer > channel post type
   - name: business
   - name: public
-  - name: public > country, currency, language
 paths:
   /admin/category:
     post:
@@ -712,7 +711,6 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              properties: {}
       security:
         - noauthAuth: []
       parameters:
@@ -750,6 +748,33 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /admin/change-old-password:
+    post:
+      tags:
+        - admin
+      summary: change old password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  example: P@ssw0rd
+                password:
+                  type: string
+                  example: P@ssw0rds
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rds
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /influencer/user-profile:
     post:
       tags:
@@ -757,38 +782,49 @@ paths:
       summary: update or create
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               type: object
-              example:
-                firstname: tom
-                middlename: 'n'
-                lastname: jerry
-                country_id: 142
-                phone_number: 98765431w0
-                gender: other
-                country_of_influence:
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                language:
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                tag:
-                  - tag 1
-                  - tag 2
-                  - tag 3
-                  - tag 4
-                category:
-                  - 2
-                  - 3
-                  - 7
-                  - 11
-                  - 17
-                  - 24
+              properties:
+                fullname:
+                  type: string
+                  example: tomnjerry
+                profile_image:
+                  type: string
+                  format: binary
+                firstname:
+                  type: string
+                  description: nullable
+                middlename:
+                  type: string
+                  description: nullable
+                lastname:
+                  type: string
+                  description: nullable
+                country_id:
+                  type: integer
+                  example: '147'
+                phone_number:
+                  type: integer
+                  example: '987654321'
+                gender:
+                  type: string
+                  example: male
+                country_of_influence[]:
+                  type: integer
+                  example: '4'
+                language[]:
+                  type: integer
+                  example: '4'
+                tag[]:
+                  type: string
+                  example: tag 4
+                short_description:
+                  type: string
+                  example: short_description
+                category[]:
+                  type: integer
+                  example: '5'
       security:
         - bearerAuth: []
       responses:
@@ -849,7 +885,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: leon.schiffer360@gmail.com
+                  example: influencer@influencer.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -899,7 +935,6 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              properties: {}
       security:
         - noauthAuth: []
       parameters:
@@ -953,7 +988,6 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              properties: {}
       security:
         - bearerAuth: []
       responses:
@@ -1006,6 +1040,33 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /influencer/change-old-password:
+    post:
+      tags:
+        - influencer
+      summary: change old password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  example: P@ssw0rd
+                password:
+                  type: string
+                  example: P@ssw0rds
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rds
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /business/login:
     post:
       tags:
@@ -1038,7 +1099,6 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              properties: {}
       security:
         - noauthAuth: []
       parameters:
@@ -1077,9 +1137,6 @@ paths:
                 password_confirmation:
                   type: string
                   example: P@ssw0rd
-                package_id:
-                  type: integer
-                  example: '1'
       responses:
         '200':
           description: Successful response
@@ -1124,7 +1181,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: dummysharedmail@gmail.com
+                  example: tomnjerry8963@gmail.com
       responses:
         '200':
           description: Successful response
@@ -1156,31 +1213,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/currency:
-    get:
+  /business/change-old-password:
+    post:
       tags:
-        - public > country, currency, language
-      summary: get all currency
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/language:
-    get:
-      tags:
-        - public > country, currency, language
-      summary: get all language
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/country:
-    get:
-      tags:
-        - public > country, currency, language
-      summary: get all country
+        - business
+      summary: change old password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  example: P@ssw0rd
+                password:
+                  type: string
+                  example: P@ssw0rds
+                password_confirmation:
+                  type: string
+                  example: P@ssw0rds
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: Successful response
@@ -1191,6 +1245,46 @@ paths:
       tags:
         - public
       summary: category with subcategory
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/currency:
+    get:
+      tags:
+        - public
+      summary: get all currency
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/language:
+    get:
+      tags:
+        - public
+      summary: get all language
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/country:
+    get:
+      tags:
+        - public
+      summary: get all country
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/tag:
+    get:
+      tags:
+        - public
+      summary: get all tag
       responses:
         '200':
           description: Successful response

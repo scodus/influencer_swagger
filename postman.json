@@ -3,7 +3,7 @@
 		"_postman_id": "908e1b18-3e75-4421-9e82-1a499da4e462",
 		"name": "influencer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "19791325"
+		"_exporter_id": "16179347"
 	},
 	"item": [
 		{
@@ -1446,6 +1446,54 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "change old password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rds",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rds",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/admin/change-old-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"change-old-password"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1471,13 +1519,137 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"firstname\": \"tom\",\n    \"middlename\": \"n\",\n    \"lastname\": \"jerry\",\n    \"country_id\": 142,\n    \"phone_number\": \"98765431w0\",\n    \"gender\": \"other\",\n    \"country_of_influence\": [1, 2, 3, 4],\n    \"language\": [1, 2, 3, 4],\n    \"tag\": [\"tag 1\", \"tag 2\", \"tag 3\", \"tag 4\"],\n    \"category\": [2, 3, 7, 11, 17, 24]\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fullname",
+											"value": "tomnjerry",
+											"type": "text"
+										},
+										{
+											"key": "profile_image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/Screenshot from 2022-10-31 15-26-50.png"
+										},
+										{
+											"key": "firstname",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "middlename",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "lastname",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "147",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "987654321",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 1",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 2",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 3",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 4",
+											"type": "text"
+										},
+										{
+											"key": "short_description",
+											"value": "short_description",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "5",
+											"type": "text"
 										}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{url}}/influencer/user-profile",
@@ -1677,7 +1849,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "leon.schiffer360@gmail.com",
+									"value": "influencer@influencer.com",
 									"type": "text"
 								},
 								{
@@ -1920,6 +2092,54 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "change old password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{influencer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rds",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rds",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/influencer/change-old-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"influencer",
+								"change-old-password"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1928,6 +2148,18 @@
 			"item": [
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()\r",
+									"pm.environment.set('business_token', response.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2031,11 +2263,6 @@
 									"key": "password_confirmation",
 									"value": "P@ssw0rd",
 									"type": "text"
-								},
-								{
-									"key": "package_id",
-									"value": "1",
-									"type": "text"
 								}
 							]
 						},
@@ -2100,7 +2327,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "dummysharedmail@gmail.com",
+									"value": "tomnjerry8963@gmail.com",
 									"type": "text"
 								}
 							]
@@ -2155,71 +2382,60 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "change old password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{business_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rds",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "P@ssw0rds",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/change-old-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"change-old-password"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "public",
 			"item": [
-				{
-					"name": "country, currency, language",
-					"item": [
-						{
-							"name": "get all currency",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/currency",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"currency"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all language",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/language",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"language"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all country",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/api/country",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"country"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
 				{
 					"name": "category with subcategory",
 					"request": {
@@ -2233,6 +2449,78 @@
 							"path": [
 								"api",
 								"category-with-sub"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all currency",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/currency",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"currency"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all language",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/language",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/country",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tag",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag"
 							]
 						}
 					},
