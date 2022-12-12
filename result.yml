@@ -28,7 +28,6 @@ components:
 tags:
   - name: admin
   - name: admin > category
-  - name: admin > package
   - name: admin > business
   - name: admin > tag
   - name: admin > language
@@ -38,6 +37,7 @@ tags:
   - name: influencer > user profile
   - name: influencer > channel
   - name: influencer > channel post type
+  - name: influencer > package
   - name: business
   - name: public
 paths:
@@ -190,135 +190,6 @@ paths:
             type: string
           required: true
           example: category-1-edit
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/package:
-    post:
-      tags:
-        - admin > package
-      summary: create package
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                  example: package 3
-                image:
-                  type: string
-                  format: binary
-                description:
-                  type: string
-                  example: package 3 description
-                price_per_month:
-                  type: number
-                  example: '1200.00'
-                status_id:
-                  type: integer
-                  description: >-
-                    nullable, 1 for active, 2 for inactive. if null status_id =
-                    1
-                  example: '1'
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - admin > package
-      summary: get all package
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /admin/package/{slug}:
-    post:
-      tags:
-        - admin > package
-      summary: update package
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                _method:
-                  type: string
-                  example: patch
-                title:
-                  type: string
-                  example: package 3 edit
-                image:
-                  type: string
-                  format: binary
-                description:
-                  type: string
-                  example: package 3 description edit
-                price_per_month:
-                  type: number
-                  example: '1100.00'
-                status_id:
-                  type: integer
-                  description: >-
-                    nullable, 1 for active, 2 for inactive. if null status_id =
-                    1
-                  example: '1'
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-          example: package-3
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    get:
-      tags:
-        - admin > package
-      summary: get single package
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-          example: package-1-edit
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    delete:
-      tags:
-        - admin > package
-      summary: delete package
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: slug
-          in: path
-          schema:
-            type: string
-          required: true
-          example: package-1-edit
       responses:
         '200':
           description: Successful response
@@ -872,10 +743,187 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/login:
+  /influencer/package:
     post:
       tags:
-        - influencer
+        - influencer > package
+      summary: create package
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: package 3
+                image:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  example: package 3 description
+                price_per_month:
+                  type: number
+                  example: '1200.00'
+                status_id:
+                  type: integer
+                  description: >
+                    nullable, 1 for active, 2 for inactive. if null status_id =
+                    1
+                  example: '1'
+                channel[0][id]:
+                  type: integer
+                  example: '1'
+                channel[0][name]:
+                  type: string
+                  example: channel name
+                channel[0][post_type][0][id]:
+                  type: integer
+                  example: '1'
+                channel[0][post_type][0][name]:
+                  type: string
+                  example: type name
+                channel[0][post_type][0][price]:
+                  type: integer
+                  example: '100'
+                channel[0][post_type][1][id]:
+                  type: integer
+                  example: '2'
+                channel[0][post_type][1][name]:
+                  type: string
+                  example: type name 2
+                channel[0][post_type][1][price]:
+                  type: integer
+                  example: '200'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - influencer > package
+      summary: get all package
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/package/{slug}:
+    post:
+      tags:
+        - influencer > package
+      summary: update package
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                _method:
+                  type: string
+                  example: patch
+                title:
+                  type: string
+                  example: package 3 edit
+                image:
+                  type: string
+                  format: binary
+                description:
+                  type: string
+                  example: package 3 description edit
+                price_per_month:
+                  type: number
+                  example: '1100.00'
+                status_id:
+                  type: integer
+                  description: >-
+                    nullable, 1 for active, 2 for inactive. if null status_id =
+                    1
+                  example: '1'
+                channel[0][id]:
+                  type: integer
+                  example: '1'
+                channel[0][name]:
+                  type: string
+                  example: channel name
+                channel[0][post_type][0][id]:
+                  type: integer
+                  example: '1'
+                channel[0][post_type][0][name]:
+                  type: string
+                  example: type name
+                channel[0][post_type][0][price]:
+                  type: integer
+                  example: '150'
+                channel[0][post_type][1][id]:
+                  type: integer
+                  example: '2'
+                channel[0][post_type][1][name]:
+                  type: string
+                  example: type name 2
+                channel[0][post_type][1][price]:
+                  type: integer
+                  example: '250'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: package-3
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - influencer > package
+      summary: get single package
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: package-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - influencer > package
+      summary: delete package
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
+          example: package-1-edit
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - business
       summary: login
       requestBody:
         content:
@@ -885,10 +933,41 @@ paths:
               properties:
                 email:
                   type: string
-                  example: influencer@influencer.com
+                  example: dummysharedmail@gmail.com
                 password:
                   type: string
                   example: P@ssw0rd
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /social-login/{provider_name}:
+    post:
+      tags:
+        - business
+      summary: social login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: '{{google_token}}'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: provider_name
+          in: path
+          schema:
+            type: string
+          required: true
+          example: google
       responses:
         '200':
           description: Successful response
@@ -898,7 +977,7 @@ paths:
     post:
       tags:
         - influencer
-      summary: social login
+      summary: social signup
       requestBody:
         content:
           multipart/form-data:
@@ -1067,23 +1146,32 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /business/login:
+  /business/social-login/{provider_name}:
     post:
       tags:
         - business
-      summary: login
+      summary: social signup
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
               properties:
-                email:
+                token:
                   type: string
-                  example: dummysharedmail@gmail.com
-                password:
-                  type: string
-                  example: P@ssw0rd
+                  example: '{{google_token}}'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: provider_name
+          in: path
+          schema:
+            type: string
+          required: true
+          example: google
       responses:
         '200':
           description: Successful response

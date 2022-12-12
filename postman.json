@@ -318,251 +318,6 @@
 					]
 				},
 				{
-					"name": "package",
-					"item": [
-						{
-							"name": "create package",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{admin_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "title",
-											"value": "package 3",
-											"type": "text"
-										},
-										{
-											"key": "image",
-											"type": "file",
-											"src": "/home/user--49/Pictures/Screenshot from 2022-10-28 08-55-54.png"
-										},
-										{
-											"key": "description",
-											"value": "package 3 description",
-											"type": "text"
-										},
-										{
-											"key": "price_per_month",
-											"value": "1200.00",
-											"type": "text"
-										},
-										{
-											"key": "status_id",
-											"value": "1",
-											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/admin/package",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"package"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "update package",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{admin_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "_method",
-											"value": "patch",
-											"type": "text"
-										},
-										{
-											"key": "title",
-											"value": "package 3 edit",
-											"type": "text"
-										},
-										{
-											"key": "image",
-											"type": "file",
-											"src": "/home/user--49/Pictures/brick2.jpeg"
-										},
-										{
-											"key": "description",
-											"value": "package 3 description edit",
-											"type": "text"
-										},
-										{
-											"key": "price_per_month",
-											"value": "1100.00",
-											"type": "text"
-										},
-										{
-											"key": "status_id",
-											"value": "1",
-											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/admin/package/:slug",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"package",
-										":slug"
-									],
-									"variable": [
-										{
-											"key": "slug",
-											"value": "package-3"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get single package",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{admin_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/admin/package/:slug",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"package",
-										":slug"
-									],
-									"variable": [
-										{
-											"key": "slug",
-											"value": "package-1-edit"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get all package",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{admin_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/admin/package",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"package"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "delete package",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{admin_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/admin/package/:slug",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"package",
-										":slug"
-									],
-									"variable": [
-										{
-											"key": "slug",
-											"value": "package-1-edit"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "business",
 					"item": [
 						{
@@ -1828,6 +1583,331 @@
 					]
 				},
 				{
+					"name": "package",
+					"item": [
+						{
+							"name": "create package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "package 3",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/Screenshot from 2022-10-28 08-55-54.png"
+										},
+										{
+											"key": "description",
+											"value": "package 3 description",
+											"type": "text"
+										},
+										{
+											"key": "price_per_month",
+											"value": "1200.00",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1\n",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][name]",
+											"value": "channel name",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][0][id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][0][name]",
+											"value": "type name",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][0][price]",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][1][id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][1][name]",
+											"value": "type name 2",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][1][price]",
+											"value": "200",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/package",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"package"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "patch",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "package 3 edit",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/brick2.jpeg"
+										},
+										{
+											"key": "description",
+											"value": "package 3 description edit",
+											"type": "text"
+										},
+										{
+											"key": "price_per_month",
+											"value": "1100.00",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "1",
+											"description": "nullable, 1 for active, 2 for inactive. if null status_id = 1",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][name]",
+											"value": "channel name",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][0][id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][0][name]",
+											"value": "type name",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][0][price]",
+											"value": "150",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][1][id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][1][name]",
+											"value": "type name 2",
+											"type": "text"
+										},
+										{
+											"key": "channel[0][post_type][1][price]",
+											"value": "250",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/package/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"package",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "package-3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/influencer/package/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"package",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "package-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all package",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paginate\": 1,\n    \"limit\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/influencer/package",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"package"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete package",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/influencer/package/:slug",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"package",
+										":slug"
+									],
+									"variable": [
+										{
+											"key": "slug",
+											"value": "package-1-edit"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "login",
 					"event": [
 						{
@@ -1860,12 +1940,11 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/influencer/login",
+							"raw": "{{url}}/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"influencer",
 								"login"
 							],
 							"query": [
@@ -1881,6 +1960,46 @@
 				},
 				{
 					"name": "social login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "{{google_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/social-login/:provider_name",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"social-login",
+								":provider_name"
+							],
+							"variable": [
+								{
+									"key": "provider_name",
+									"value": "google"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "social signup",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2185,12 +2304,11 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/business/login",
+							"raw": "{{url}}/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"business",
 								"login"
 							],
 							"query": [
@@ -2198,6 +2316,87 @@
 									"key": "email",
 									"value": null,
 									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "social login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "{{google_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/social-login/:provider_name",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"social-login",
+								":provider_name"
+							],
+							"variable": [
+								{
+									"key": "provider_name",
+									"value": "google"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "social signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "{{google_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/business/social-login/:provider_name",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"business",
+								"social-login",
+								":provider_name"
+							],
+							"variable": [
+								{
+									"key": "provider_name",
+									"value": "google"
 								}
 							]
 						}
