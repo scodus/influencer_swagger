@@ -1403,6 +1403,11 @@
 											"key": "category[]",
 											"value": "5",
 											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "tomnjerry",
+											"type": "text"
 										}
 									]
 								},
@@ -1442,6 +1447,92 @@
 									"path": [
 										"influencer",
 										"user-profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "category",
+					"item": [
+						{
+							"name": "udpate",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "19",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/user-category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"user-category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/influencer/user-category",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"user-category"
 									]
 								}
 							},
@@ -1946,13 +2037,6 @@
 							],
 							"path": [
 								"login"
-							],
-							"query": [
-								{
-									"key": "email",
-									"value": null,
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -2735,7 +2819,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{business_token}}",
+							"value": "",
 							"type": "string"
 						}
 					]
@@ -2743,13 +2827,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/business/business-has-package-middleware-check",
+					"raw": "{{url}}/qwe",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"business",
-						"business-has-package-middleware-check"
+						"qwe"
 					]
 				}
 			},
