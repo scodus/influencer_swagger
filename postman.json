@@ -1284,7 +1284,7 @@
 										{
 											"key": "profile_image",
 											"type": "file",
-											"src": "/home/user--49/Pictures/Screenshot from 2022-10-31 15-26-50.png"
+											"src": "/home/user--49/Pictures/imperium-vorago.jpg"
 										},
 										{
 											"key": "firstname",
@@ -1482,12 +1482,12 @@
 										},
 										{
 											"key": "category[]",
-											"value": "3",
+											"value": "7",
 											"type": "text"
 										},
 										{
 											"key": "category[]",
-											"value": "4",
+											"value": "17",
 											"type": "text"
 										},
 										{
@@ -1665,6 +1665,180 @@
 										{
 											"key": "status",
 											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "initial price",
+					"item": [
+						{
+							"name": "update or create initial price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "initial_price[0][post_id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "initial_price[0][price]",
+											"value": "1500.00",
+											"type": "text"
+										},
+										{
+											"key": "initial_price[1][post_id]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "initial_price[1][price]",
+											"value": "1600.00",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/initial-price",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"initial-price"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single initial price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/influencer/initial-price/:channel_post_type_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"initial-price",
+										":channel_post_type_id"
+									],
+									"variable": [
+										{
+											"key": "channel_post_type_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all initial price",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/influencer/initial-price?limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"initial-price"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete initial price",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/influencer/initial-price/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"initial-price",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
 										}
 									]
 								}

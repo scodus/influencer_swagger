@@ -38,6 +38,7 @@ tags:
   - name: influencer > category
   - name: influencer > channel
   - name: influencer > channel post type
+  - name: influencer > initial price
   - name: influencer > package
   - name: business
   - name: public
@@ -774,6 +775,91 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/initial-price:
+    post:
+      tags:
+        - influencer > initial price
+      summary: update or create initial price
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                initial_price[0][post_id]:
+                  type: integer
+                  example: '1'
+                initial_price[0][price]:
+                  type: number
+                  example: '1500.00'
+                initial_price[1][post_id]:
+                  type: integer
+                  example: '2'
+                initial_price[1][price]:
+                  type: number
+                  example: '1600.00'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - influencer > initial price
+      summary: get all initial price
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/initial-price/{channel_post_type_id}:
+    get:
+      tags:
+        - influencer > initial price
+      summary: get single initial price
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: channel_post_type_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /influencer/initial-price/{id}:
+    delete:
+      tags:
+        - influencer > initial price
+      summary: delete initial price
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
       responses:
         '200':
           description: Successful response
