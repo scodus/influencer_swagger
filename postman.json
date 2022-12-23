@@ -1385,26 +1385,6 @@
 											"type": "text"
 										},
 										{
-											"key": "category[]",
-											"value": "2",
-											"type": "text"
-										},
-										{
-											"key": "category[]",
-											"value": "3",
-											"type": "text"
-										},
-										{
-											"key": "category[]",
-											"value": "4",
-											"type": "text"
-										},
-										{
-											"key": "category[]",
-											"value": "5",
-											"type": "text"
-										},
-										{
 											"key": "username",
 											"value": "tomnjerry",
 											"type": "text"
@@ -1447,6 +1427,50 @@
 									"path": [
 										"influencer",
 										"user-profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = pm.response.json()",
+											"pm.environment.set('influencer_token', response.data.token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "influencer@influencer.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "P@ssw0rd",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"login"
 									]
 								}
 							},
@@ -2173,50 +2197,6 @@
 					]
 				},
 				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const response = pm.response.json()",
-									"pm.environment.set('influencer_token', response.data.token)"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "influencer@influencer.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "P@ssw0rd",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/login",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "social login",
 					"request": {
 						"method": "POST",
@@ -2523,6 +2503,87 @@
 		{
 			"name": "business",
 			"item": [
+				{
+					"name": "user profile",
+					"item": [
+						{
+							"name": "update or create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{business_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "fullname",
+											"value": "tomnjerry",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "business@business.com",
+											"type": "text"
+										},
+										{
+											"key": "profile_image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/imperium-vorago.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/business/user-profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"business",
+										"user-profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{business_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/business/user-profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"business",
+										"user-profile"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "login",
 					"event": [

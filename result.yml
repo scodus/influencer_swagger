@@ -41,6 +41,7 @@ tags:
   - name: influencer > initial price
   - name: influencer > package
   - name: business
+  - name: business > user profile
   - name: public
 paths:
   /admin/category:
@@ -695,9 +696,6 @@ paths:
                 short_description:
                   type: string
                   example: short_description
-                category[]:
-                  type: integer
-                  example: '5'
                 username:
                   type: string
                   example: tomnjerry
@@ -714,6 +712,28 @@ paths:
       summary: get
       security:
         - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - business
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: dummysharedmail@gmail.com
+                password:
+                  type: string
+                  example: P@ssw0rd
       responses:
         '200':
           description: Successful response
@@ -1042,28 +1062,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /login:
-    post:
-      tags:
-        - business
-      summary: login
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: dummysharedmail@gmail.com
-                password:
-                  type: string
-                  example: P@ssw0rd
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /social-login/{provider_name}:
     post:
       tags:
@@ -1261,6 +1259,44 @@ paths:
                 password_confirmation:
                   type: string
                   example: P@ssw0rds
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /business/user-profile:
+    post:
+      tags:
+        - business > user profile
+      summary: update or create
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  example: tomnjerry
+                email:
+                  type: string
+                  example: business@business.com
+                profile_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - business > user profile
+      summary: get
       security:
         - bearerAuth: []
       responses:
