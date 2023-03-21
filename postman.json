@@ -1388,6 +1388,21 @@
 											"key": "username",
 											"value": "tomnjerry",
 											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "category[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "banner_image",
+											"type": "file",
+											"src": "/home/user--49/Pictures/Screenshot from 2023-03-17 16-38-31.png"
 										}
 									]
 								},
@@ -1433,44 +1448,214 @@
 							"response": []
 						},
 						{
-							"name": "login",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"const response = pm.response.json()",
-											"pm.environment.set('influencer_token', response.data.token)"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
+							"name": "update-country-of-influence",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "email",
-											"value": "influencer@influencer.com",
+											"key": "country_of_influence[]",
+											"value": "1",
 											"type": "text"
 										},
 										{
-											"key": "password",
-											"value": "P@ssw0rd",
+											"key": "country_of_influence[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "country_of_influence[]",
+											"value": "5",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/login",
+									"raw": "{{url}}/influencer/update-country-of-influence",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"login"
+										"influencer",
+										"update-country-of-influence"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update tag",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tag[]",
+											"value": "tag 1",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 2",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 3",
+											"type": "text"
+										},
+										{
+											"key": "tag[]",
+											"value": "tag 4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/update-tag",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"update-tag"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "udpate language",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "language[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "language[]",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/update-language",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"update-language"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update agency",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "tomnjerry",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "",
+											"description": "nullable",
+											"type": "text"
+										},
+										{
+											"key": "join_date",
+											"value": "2022-01-01",
+											"description": "nullable",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/influencer/update-agency",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"influencer",
+										"update-agency"
 									]
 								}
 							},
@@ -1720,7 +1905,7 @@
 									"formdata": [
 										{
 											"key": "initial_price[0][post_id]",
-											"value": "1",
+											"value": "4",
 											"type": "text"
 										},
 										{
@@ -1894,7 +2079,7 @@
 									"formdata": [
 										{
 											"key": "title",
-											"value": "package 3",
+											"value": "package 1",
 											"type": "text"
 										},
 										{
@@ -1908,7 +2093,7 @@
 											"type": "text"
 										},
 										{
-											"key": "price_per_month",
+											"key": "price",
 											"value": "1200.00",
 											"type": "text"
 										},
@@ -1920,42 +2105,62 @@
 										},
 										{
 											"key": "channel[0][id]",
-											"value": "1",
+											"value": "3",
 											"type": "text"
 										},
 										{
 											"key": "channel[0][name]",
-											"value": "channel name",
+											"value": "Instagram",
 											"type": "text"
 										},
 										{
 											"key": "channel[0][post_type][0][id]",
-											"value": "1",
+											"value": "5",
 											"type": "text"
 										},
 										{
 											"key": "channel[0][post_type][0][name]",
-											"value": "type name",
+											"value": "Reels",
 											"type": "text"
 										},
 										{
-											"key": "channel[0][post_type][0][price]",
-											"value": "100",
+											"key": "channel[0][post_type][0][quantity]",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "channel[0][post_type][1][id]",
-											"value": "2",
+											"value": "6",
 											"type": "text"
 										},
 										{
 											"key": "channel[0][post_type][1][name]",
-											"value": "type name 2",
+											"value": "Posts",
 											"type": "text"
 										},
 										{
-											"key": "channel[0][post_type][1][price]",
-											"value": "200",
+											"key": "channel[0][post_type][1][quantity]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[1][id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[1][name]",
+											"value": "facebook",
+											"type": "text"
+										},
+										{
+											"key": "channel[1][post_type][0][id]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "channel[1][post_type][0][quantity]",
+											"value": "1",
 											"type": "text"
 										}
 									]
@@ -1998,7 +2203,7 @@
 										},
 										{
 											"key": "title",
-											"value": "package 3 edit",
+											"value": "package 1",
 											"type": "text"
 										},
 										{
@@ -2012,7 +2217,7 @@
 											"type": "text"
 										},
 										{
-											"key": "price_per_month",
+											"key": "price",
 											"value": "1100.00",
 											"type": "text"
 										},
@@ -2029,7 +2234,7 @@
 										},
 										{
 											"key": "channel[0][name]",
-											"value": "channel name",
+											"value": "Facebook",
 											"type": "text"
 										},
 										{
@@ -2039,12 +2244,12 @@
 										},
 										{
 											"key": "channel[0][post_type][0][name]",
-											"value": "type name",
+											"value": "Post",
 											"type": "text"
 										},
 										{
-											"key": "channel[0][post_type][0][price]",
-											"value": "150",
+											"key": "channel[0][post_type][0][quantity]",
+											"value": "11",
 											"type": "text"
 										},
 										{
@@ -2054,12 +2259,12 @@
 										},
 										{
 											"key": "channel[0][post_type][1][name]",
-											"value": "type name 2",
+											"value": "Reels",
 											"type": "text"
 										},
 										{
-											"key": "channel[0][post_type][1][price]",
-											"value": "250",
+											"key": "channel[0][post_type][1][quantity]",
+											"value": "11",
 											"type": "text"
 										}
 									]
@@ -2077,7 +2282,7 @@
 									"variable": [
 										{
 											"key": "slug",
-											"value": "package-3"
+											"value": "package-1"
 										}
 									]
 								}
@@ -2112,7 +2317,7 @@
 									"variable": [
 										{
 											"key": "slug",
-											"value": "package-1-edit"
+											"value": "package-1"
 										}
 									]
 								}
@@ -2195,6 +2400,50 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"pm.environment.set('influencer_token', response.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "influencer@influencer.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "P@ssw0rd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "social login",
@@ -3045,33 +3294,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "test",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/qwe",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"qwe"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
