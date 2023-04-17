@@ -32,7 +32,7 @@ tags:
   - name: admin > tag
   - name: admin > language
   - name: admin > channel
-  - name: admin > channel post type
+  - name: admin > channel content
   - name: influencer
   - name: influencer > user profile
   - name: influencer > category
@@ -44,7 +44,7 @@ tags:
   - name: business > user profile
   - name: public
 paths:
-  /admin/category:
+  /api/admin/category:
     post:
       tags:
         - admin > category
@@ -72,19 +72,20 @@ paths:
                   description: nullable
                 meta_title:
                   type: string
+                  description: nullable
                   example: category 1 meta title
                 meta_description:
                   type: string
+                  description: nullable
                   example: category 1 meta description
                 meta_keyword[]:
                   type: string
+                  description: nullable
                   example: keyword 3
-                status_id:
-                  type: integer
-                  description: >-
-                    nullable, 1 for active, 2 for inactive. if null status_id =
-                    1
-                  example: '1'
+                status:
+                  type: string
+                  description: nullable, active or inactive
+                  example: active
       security:
         - bearerAuth: []
       responses:
@@ -98,12 +99,33 @@ paths:
       summary: get all category
       security:
         - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /admin/category/{slug}:
+  /api/admin/category/{slug}:
     post:
       tags:
         - admin > category
@@ -119,7 +141,7 @@ paths:
                   example: patch
                 title:
                   type: string
-                  example: category 1 edit
+                  example: category 1 edit 2
                 small_image:
                   type: string
                   format: binary
@@ -142,12 +164,12 @@ paths:
                 meta_keyword[]:
                   type: string
                   example: keyword 3 edit
-                status_id:
-                  type: integer
+                status:
+                  type: string
                   description: >-
                     nullable, 1 for active, 2 for inactive. if null status_id =
                     1
-                  example: '1'
+                  example: active
       security:
         - bearerAuth: []
       parameters:
@@ -174,7 +196,7 @@ paths:
           schema:
             type: string
           required: true
-          example: category-1-edit
+          example: category-1
       responses:
         '200':
           description: Successful response
@@ -192,7 +214,7 @@ paths:
           schema:
             type: string
           required: true
-          example: category-1-edit
+          example: category-1
       responses:
         '200':
           description: Successful response
@@ -219,7 +241,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/tag:
+  /api/admin/tag:
     post:
       tags:
         - admin > tag
@@ -230,7 +252,7 @@ paths:
             schema:
               type: object
               example:
-                title: tag 1
+                title: tag-1
       security:
         - bearerAuth: []
       responses:
@@ -244,12 +266,33 @@ paths:
       summary: get all tag
       security:
         - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /admin/tag/{slug}:
+  /api/admin/tag/{slug}:
     post:
       tags:
         - admin > tag
@@ -288,7 +331,7 @@ paths:
           schema:
             type: string
           required: true
-          example: tag-1-edit
+          example: tag-1
       responses:
         '200':
           description: Successful response
@@ -306,13 +349,13 @@ paths:
           schema:
             type: string
           required: true
-          example: tag-1-edit
+          example: tag-1
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /admin/language:
+  /api/admin/language:
     post:
       tags:
         - admin > language
@@ -342,7 +385,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/language/{slug}:
+  /api/admin/language/{slug}:
     post:
       tags:
         - admin > language
@@ -405,7 +448,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/channel:
+  /api/admin/channel:
     get:
       tags:
         - admin > channel
@@ -413,16 +456,33 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - name: status
+        - name: paginate
+          in: query
+          schema:
+            type: integer
+          description: nullable, 1 to paginate
+          example: '1'
+        - name: page
           in: query
           schema:
             type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /admin/channel/{channel_id}/status:
+  /api/admin/channel/{channel_id}/status:
     post:
       tags:
         - admin > channel
@@ -434,8 +494,8 @@ paths:
               type: object
               properties:
                 status:
-                  type: integer
-                  example: '1'
+                  type: string
+                  example: active
                 _method:
                   type: string
                   example: PUT
@@ -472,11 +532,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /admin/channel-post-type:
+  /api/admin/channel-content:
     post:
       tags:
-        - admin > channel post type
-      summary: create channel post type
+        - admin > channel content
+      summary: create
       requestBody:
         content:
           application/json:
@@ -485,7 +545,7 @@ paths:
               example:
                 name: Reels
                 channel_id: 1
-                status: 0
+                status: active
       security:
         - bearerAuth: []
       responses:
@@ -495,25 +555,40 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > channel post type
+        - admin > channel content
       summary: get all
       security:
         - bearerAuth: []
       parameters:
-        - name: status
+        - name: paginate
           in: query
           schema:
-            type: integer
-          example: '1'
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /admin/channel-post-type/{channel_post_type_id}:
+  /api/admin/channel-content/{channel_content_id}:
     post:
       tags:
-        - admin > channel post type
+        - admin > channel content
       summary: update
       requestBody:
         content:
@@ -523,17 +598,17 @@ paths:
               example:
                 name: Reel
                 channel_id: 1
-                status: 1
+                status: active
                 _method: PUT
       security:
         - bearerAuth: []
       parameters:
-        - name: channel_post_type_id
+        - name: channel_content_id
           in: path
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '9'
       responses:
         '200':
           description: Successful response
@@ -541,17 +616,17 @@ paths:
             application/json: {}
     delete:
       tags:
-        - admin > channel post type
+        - admin > channel content
       summary: delete
       security:
         - bearerAuth: []
       parameters:
-        - name: channel_post_type_id
+        - name: channel_content_id
           in: path
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '9'
       responses:
         '200':
           description: Successful response
@@ -559,17 +634,17 @@ paths:
             application/json: {}
     get:
       tags:
-        - admin > channel post type
+        - admin > channel content
       summary: get single
       security:
         - bearerAuth: []
       parameters:
-        - name: channel_post_type_id
+        - name: channel_content_id
           in: path
           schema:
             type: integer
           required: true
-          example: '2'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -649,7 +724,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/user-profile:
+  /api/influencer/user-profile:
     post:
       tags:
         - influencer > user profile
@@ -723,7 +798,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/update-country-of-influence:
+  /api/influencer/update-country-of-influence:
     post:
       tags:
         - influencer > user profile
@@ -744,7 +819,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/update-tag:
+  /api/influencer/update-tag:
     post:
       tags:
         - influencer > user profile
@@ -765,7 +840,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/update-language:
+  /api/influencer/update-language:
     post:
       tags:
         - influencer > user profile
@@ -786,7 +861,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/update-agency:
+  /api/influencer/update-agency:
     post:
       tags:
         - influencer > user profile
@@ -803,6 +878,7 @@ paths:
                 address:
                   type: string
                   description: nullable
+                  example: asdfasdf
                 join_date:
                   type: string
                   description: nullable
@@ -814,7 +890,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/user-category:
+  /api/influencer/user-category:
     post:
       tags:
         - influencer > category
@@ -827,7 +903,7 @@ paths:
               properties:
                 category[]:
                   type: integer
-                  example: '19'
+                  example: '3'
       security:
         - bearerAuth: []
       responses:
@@ -846,13 +922,30 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/channel:
+  /api/influencer/channel:
     get:
       tags:
         - influencer > channel
       summary: get active channels
       security:
         - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -960,7 +1053,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /influencer/package:
+  /api/influencer/package:
     post:
       tags:
         - influencer > package
@@ -983,34 +1076,32 @@ paths:
                 price:
                   type: number
                   example: '1200.00'
-                status_id:
-                  type: integer
-                  description: >
-                    nullable, 1 for active, 2 for inactive. if null status_id =
-                    1
-                  example: '1'
+                status:
+                  type: string
+                  description: nullable, active or inactive
+                  example: active
                 channel[0][id]:
                   type: integer
                   example: '3'
                 channel[0][name]:
                   type: string
                   example: Instagram
-                channel[0][post_type][0][id]:
+                channel[0][channel_content][0][id]:
                   type: integer
                   example: '5'
-                channel[0][post_type][0][name]:
+                channel[0][channel_content][0][name]:
                   type: string
                   example: Reels
-                channel[0][post_type][0][quantity]:
+                channel[0][channel_content][0][quantity]:
                   type: integer
                   example: '1'
-                channel[0][post_type][1][id]:
+                channel[0][channel_content][1][id]:
                   type: integer
                   example: '6'
-                channel[0][post_type][1][name]:
+                channel[0][channel_content][1][name]:
                   type: string
                   example: Posts
-                channel[0][post_type][1][quantity]:
+                channel[0][channel_content][1][quantity]:
                   type: integer
                   example: '1'
                 channel[1][id]:
@@ -1019,10 +1110,10 @@ paths:
                 channel[1][name]:
                   type: string
                   example: facebook
-                channel[1][post_type][0][id]:
+                channel[1][channel_content][0][id]:
                   type: integer
                   example: '1'
-                channel[1][post_type][0][quantity]:
+                channel[1][channel_content][0][quantity]:
                   type: integer
                   example: '1'
       security:
@@ -1038,12 +1129,33 @@ paths:
       summary: get all package
       security:
         - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /influencer/package/{slug}:
+  /api/influencer/package/{slug}:
     post:
       tags:
         - influencer > package
@@ -1060,45 +1172,45 @@ paths:
                 title:
                   type: string
                   example: package 1
-                image:
-                  type: string
-                  format: binary
                 description:
                   type: string
                   example: package 3 description edit
                 price:
                   type: number
                   example: '1100.00'
-                status_id:
+                status:
+                  type: string
+                  example: active
+                channel[0][id]:
                   type: integer
                   description: >-
                     nullable, 1 for active, 2 for inactive. if null status_id =
                     1
                   example: '1'
-                channel[0][id]:
-                  type: integer
-                  example: '1'
                 channel[0][name]:
                   type: string
                   example: Facebook
-                channel[0][post_type][0][id]:
+                channel[0][channel_content][0][id]:
                   type: integer
                   example: '1'
-                channel[0][post_type][0][name]:
+                channel[0][channel_content][0][name]:
                   type: string
                   example: Post
-                channel[0][post_type][0][quantity]:
+                channel[0][channel_content][0][quantity]:
                   type: integer
                   example: '11'
-                channel[0][post_type][1][id]:
+                channel[0][channel_content][1][id]:
                   type: integer
                   example: '2'
-                channel[0][post_type][1][name]:
+                channel[0][channel_content][1][name]:
                   type: string
                   example: Reels
-                channel[0][post_type][1][quantity]:
+                channel[0][channel_content][1][quantity]:
                   type: integer
                   example: '11'
+                image:
+                  type: string
+                  format: binary
       security:
         - bearerAuth: []
       parameters:
@@ -1107,7 +1219,7 @@ paths:
           schema:
             type: string
           required: true
-          example: package-1
+          example: package-1-1
       responses:
         '200':
           description: Successful response
@@ -1125,7 +1237,7 @@ paths:
           schema:
             type: string
           required: true
-          example: package-1
+          example: package-1-1
       responses:
         '200':
           description: Successful response
@@ -1143,7 +1255,7 @@ paths:
           schema:
             type: string
           required: true
-          example: package-1-edit
+          example: package-1-1
       responses:
         '200':
           description: Successful response
@@ -1600,6 +1712,29 @@ paths:
       tags:
         - public
       summary: category with subcategory
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: 'nullable, default 1 '
+          example: '2'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: nullable, default 10
+          example: '1'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
@@ -1640,6 +1775,29 @@ paths:
       tags:
         - public
       summary: get all tag
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
