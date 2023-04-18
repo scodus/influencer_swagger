@@ -3546,8 +3546,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://influencer.scodus.com/",
-					"protocol": "http",
+					"raw": "https://influencer.scodus.com/",
+					"protocol": "https",
 					"host": [
 						"influencer",
 						"scodus",
