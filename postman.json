@@ -3539,6 +3539,27 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://influencer.scodus.com/api/",
+					"protocol": "https",
+					"host": [
+						"influencer",
+						"scodus",
+						"com"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
