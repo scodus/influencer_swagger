@@ -17,7 +17,6 @@ info:
     url: https://es.wikipedia.org/wiki/Licencia_MIT
 servers:
   - url: http://{{url}}
-  - url: https://influencer.scodus.com
 components:
   securitySchemes:
     bearerAuth:
@@ -1850,16 +1849,6 @@ paths:
           schema:
             type: string
           description: nullable
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/:
-    get:
-      tags:
-        - default
-      summary: test
       responses:
         '200':
           description: Successful response
