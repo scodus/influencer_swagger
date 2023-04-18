@@ -3543,10 +3543,25 @@
 		{
 			"name": "test",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "influencer@influencer.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "P@ssw0rd",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "https://influencer.scodus.com/api/",
+					"raw": "https://influencer.scodus.com/login",
 					"protocol": "https",
 					"host": [
 						"influencer",
@@ -3554,8 +3569,7 @@
 						"com"
 					],
 					"path": [
-						"api",
-						""
+						"login"
 					]
 				}
 			},

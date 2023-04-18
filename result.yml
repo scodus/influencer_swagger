@@ -1233,8 +1233,8 @@ paths:
   /login:
     post:
       tags:
-        - business
-      summary: login
+        - default
+      summary: test
       requestBody:
         content:
           multipart/form-data:
@@ -1243,7 +1243,7 @@ paths:
               properties:
                 email:
                   type: string
-                  example: dummysharedmail@gmail.com
+                  example: influencer@influencer.com
                 password:
                   type: string
                   example: P@ssw0rd
@@ -1850,16 +1850,6 @@ paths:
           schema:
             type: string
           description: nullable
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/:
-    get:
-      tags:
-        - default
-      summary: test
       responses:
         '200':
           description: Successful response
