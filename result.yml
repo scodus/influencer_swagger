@@ -17,6 +17,7 @@ info:
     url: https://es.wikipedia.org/wiki/Licencia_MIT
 servers:
   - url: http://{{url}}
+  - url: http://influencer.scodus.com
 components:
   securitySchemes:
     bearerAuth:
@@ -36,13 +37,13 @@ tags:
   - name: influencer
   - name: influencer > user profile
   - name: influencer > category
-  - name: influencer > channel
-  - name: influencer > channel post type
   - name: influencer > initial price
   - name: influencer > package
   - name: business
   - name: business > user profile
   - name: public
+  - name: public > channel
+  - name: public > channel content
 paths:
   /api/admin/category:
     post:
@@ -516,7 +517,7 @@ paths:
   /influencer/channel/{channel_id}:
     get:
       tags:
-        - influencer > channel
+        - admin > channel
       summary: find single channel
       security:
         - bearerAuth: []
@@ -526,7 +527,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '4'
+          example: '1'
       responses:
         '200':
           description: Successful response
@@ -922,53 +923,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/influencer/channel:
-    get:
-      tags:
-        - influencer > channel
-      summary: get active channels
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: paginate
-          in: query
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: string
-        - name: search_keyword
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /influencer/channel-post-type:
-    get:
-      tags:
-        - influencer > channel post type
-      summary: get all active
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /influencer/initial-price:
+  /api/influencer/initial-price:
     post:
       tags:
         - influencer > initial price
@@ -979,13 +934,13 @@ paths:
             schema:
               type: object
               properties:
-                initial_price[0][post_id]:
+                initial_price[0][channel_content_id]:
                   type: integer
-                  example: '4'
+                  example: '1'
                 initial_price[0][price]:
                   type: number
                   example: '1500.00'
-                initial_price[1][post_id]:
+                initial_price[1][channel_content_id]:
                   type: integer
                   example: '2'
                 initial_price[1][price]:
@@ -1005,17 +960,32 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: nullable, default 1
         - name: limit
           in: query
           schema:
-            type: integer
-          example: '10'
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /influencer/initial-price/{channel_post_type_id}:
+  /api/influencer/initial-price/{channel_content_id}:
     get:
       tags:
         - influencer > initial price
@@ -1023,18 +993,17 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - name: channel_post_type_id
+        - name: channel_content_id
           in: path
           schema:
-            type: integer
+            type: string
           required: true
-          example: '1'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
-  /influencer/initial-price/{id}:
+  /api/influencer/initial-price/{id}:
     delete:
       tags:
         - influencer > initial price
@@ -1139,7 +1108,7 @@ paths:
           in: query
           schema:
             type: string
-          description: 'nullable, default 1 '
+          description: nullable, default 1
         - name: limit
           in: query
           schema:
@@ -1707,6 +1676,91 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/channel:
+    get:
+      tags:
+        - public > channel
+      summary: get active channels
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: 'nullable, default 1 '
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/channel/{channel_id}:
+    get:
+      tags:
+        - public > channel
+      summary: find single channel
+      security:
+        - noauthAuth: []
+      parameters:
+        - name: channel_id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/channel-content:
+    get:
+      tags:
+        - public > channel content
+      summary: get all active
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: string
+          description: nullable, 1 to paginate
+        - name: page
+          in: query
+          schema:
+            type: string
+          description: nullable, default 1
+        - name: limit
+          in: query
+          schema:
+            type: string
+          description: nullable, default 10
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+          description: nullable
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/category-with-sub:
     get:
       tags:
@@ -1721,15 +1775,13 @@ paths:
         - name: page
           in: query
           schema:
-            type: integer
+            type: string
           description: 'nullable, default 1 '
-          example: '2'
         - name: limit
           in: query
           schema:
-            type: integer
+            type: string
           description: nullable, default 10
-          example: '1'
         - name: search_keyword
           in: query
           schema:
@@ -1798,6 +1850,16 @@ paths:
           schema:
             type: string
           description: nullable
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /:
+    get:
+      tags:
+        - default
+      summary: test
       responses:
         '200':
           description: Successful response

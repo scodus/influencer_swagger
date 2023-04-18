@@ -1863,158 +1863,6 @@
 					]
 				},
 				{
-					"name": "channel",
-					"item": [
-						{
-							"name": "get active channels",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{influencer_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/api/influencer/channel?paginate=&page=&limit=&search_keyword=",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"api",
-										"influencer",
-										"channel"
-									],
-									"query": [
-										{
-											"key": "paginate",
-											"value": ""
-										},
-										{
-											"key": "page",
-											"value": ""
-										},
-										{
-											"key": "limit",
-											"value": ""
-										},
-										{
-											"key": "search_keyword",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "find single channel",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{influencer_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
-								"url": {
-									"raw": "{{url}}/influencer/channel/:channel_id",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"influencer",
-										"channel",
-										":channel_id"
-									],
-									"variable": [
-										{
-											"key": "channel_id",
-											"value": "4"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "channel post type",
-					"item": [
-						{
-							"name": "get all active",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{influencer_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/influencer/channel-post-type?status=",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"influencer",
-										"channel-post-type"
-									],
-									"query": [
-										{
-											"key": "status",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "initial price",
 					"item": [
 						{
@@ -2036,8 +1884,8 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "initial_price[0][post_id]",
-											"value": "4",
+											"key": "initial_price[0][channel_content_id]",
+											"value": "1",
 											"type": "text"
 										},
 										{
@@ -2046,7 +1894,7 @@
 											"type": "text"
 										},
 										{
-											"key": "initial_price[1][post_id]",
+											"key": "initial_price[1][channel_content_id]",
 											"value": "2",
 											"type": "text"
 										},
@@ -2058,11 +1906,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/influencer/initial-price",
+									"raw": "{{url}}/api/influencer/initial-price",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"influencer",
 										"initial-price"
 									]
@@ -2086,19 +1935,20 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/influencer/initial-price/:channel_post_type_id",
+									"raw": "{{url}}/api/influencer/initial-price/:channel_content_id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"influencer",
 										"initial-price",
-										":channel_post_type_id"
+										":channel_content_id"
 									],
 									"variable": [
 										{
-											"key": "channel_post_type_id",
-											"value": "1"
+											"key": "channel_content_id",
+											"value": ""
 										}
 									]
 								}
@@ -2133,18 +1983,35 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/influencer/initial-price?limit=10",
+									"raw": "{{url}}/api/influencer/initial-price?paginate=&page=&limit=&search_keyword=",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"influencer",
 										"initial-price"
 									],
 									"query": [
 										{
+											"key": "paginate",
+											"value": "",
+											"description": "nullable, 1 to paginate"
+										},
+										{
+											"key": "page",
+											"value": "",
+											"description": "nullable, default 1"
+										},
+										{
 											"key": "limit",
-											"value": "10"
+											"value": "",
+											"description": "nullable, default 10"
+										},
+										{
+											"key": "search_keyword",
+											"value": "",
+											"description": "nullable"
 										}
 									]
 								}
@@ -2167,11 +2034,12 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/influencer/initial-price/:id",
+									"raw": "{{url}}/api/influencer/initial-price/:id",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
 										"influencer",
 										"initial-price",
 										":id"
@@ -2505,7 +2373,7 @@
 										{
 											"key": "page",
 											"value": "",
-											"description": "nullable, default 1 "
+											"description": "nullable, default 1"
 										},
 										{
 											"key": "limit",
@@ -3363,12 +3231,169 @@
 			"name": "public",
 			"item": [
 				{
+					"name": "channel",
+					"item": [
+						{
+							"name": "get active channels",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/channel?paginate=&page=&limit=&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"channel"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "",
+											"description": "nullable, 1 to paginate"
+										},
+										{
+											"key": "page",
+											"value": "",
+											"description": "nullable, default 1 "
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "nullable, default 10"
+										},
+										{
+											"key": "search_keyword",
+											"value": "",
+											"description": "nullable"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "find single channel",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/channel/:channel_id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"channel",
+										":channel_id"
+									],
+									"variable": [
+										{
+											"key": "channel_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "channel content",
+					"item": [
+						{
+							"name": "get all active",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{influencer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/channel-content?paginate=&page=&limit=&search_keyword=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"channel-content"
+									],
+									"query": [
+										{
+											"key": "paginate",
+											"value": "",
+											"description": "nullable, 1 to paginate"
+										},
+										{
+											"key": "page",
+											"value": "",
+											"description": "nullable, default 1"
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"description": "nullable, default 10"
+										},
+										{
+											"key": "search_keyword",
+											"value": "",
+											"description": "nullable"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "category with subcategory",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/category-with-sub?paginate=&page=2&limit=1&search_keyword=",
+							"raw": "{{url}}/api/category-with-sub?paginate=&page=&limit=&search_keyword=",
 							"host": [
 								"{{url}}"
 							],
@@ -3384,12 +3409,12 @@
 								},
 								{
 									"key": "page",
-									"value": "2",
+									"value": "",
 									"description": "nullable, default 1 "
 								},
 								{
 									"key": "limit",
-									"value": "1",
+									"value": "",
 									"description": "nullable, default 10"
 								},
 								{
@@ -3514,6 +3539,26 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://influencer.scodus.com/",
+					"protocol": "http",
+					"host": [
+						"influencer",
+						"scodus",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
