@@ -3546,7 +3546,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://influencer.scodus.com/",
+					"raw": "https://influencer.scodus.com/api/",
 					"protocol": "https",
 					"host": [
 						"influencer",
@@ -3554,6 +3554,7 @@
 						"com"
 					],
 					"path": [
+						"api",
 						""
 					]
 				}
