@@ -17,6 +17,12 @@
       "url": "https://github.com/joolfe/logoBanner.png",
       "backgroundColor": "#FFFFFF",
       "altText": "logo"
-    }
+    },
+    "servers": [
+      {
+        "url": "http://influencer.scodus.com/",
+        "description": "server"
+      }
+    ]
   }
 }
