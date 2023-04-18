@@ -20,7 +20,7 @@
     },
     "servers": [
       {
-        "url": "http://influencer.scodus.com/",
+        "url": "https://influencer.scodus.com/",
         "description": "server"
       }
     ]
